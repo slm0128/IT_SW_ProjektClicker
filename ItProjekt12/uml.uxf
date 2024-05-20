@@ -1,1 +1,17 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level></diagram>
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>490</x><y>0</y><w>350</w><h>200</h></coordinates><panel_attributes>GUI
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>370</y><w>350</w><h>200</h></coordinates><panel_attributes>Player
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1000</x><y>700</y><w>350</w><h>200</h></coordinates><panel_attributes>Klicker
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>700</y><w>350</w><h>200</h></coordinates><panel_attributes>Rennen
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>560</y><w>190</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;140</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>560</y><w>170</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>770</y><w>680</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;660;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>850</y><w>680</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>660;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>190</y><w>30</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;180</additional_attributes></element></diagram>
