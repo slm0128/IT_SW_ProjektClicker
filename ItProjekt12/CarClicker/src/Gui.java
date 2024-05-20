@@ -25,7 +25,6 @@ public class Gui {
         JButton clickButton = new JButton("Car (Img)");
         clickButton.setIcon(car1);
         myFrame.add(clickButton, BorderLayout.CENTER);
-        // Fügt ActionListener zum Button hinzu
         clickButton.setPreferredSize(new Dimension(100, 50));
 
         clickButton.addActionListener(new ActionListener() {
@@ -43,11 +42,30 @@ public class Gui {
         leftPanel.setLayout(new GridLayout(5, 1)); // 5 Buttons untereinander
 
         for (int i = 1; i <= 5; i++) {
-            JButton leftButton = new JButton("Left " + i);
+            JButton leftButton = new JButton("Left Button " + i);
+            final int leftButtonIndex = i;
             leftButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(leftButton.getText() + " clicked");
+                    System.out.println("Left Button " + leftButtonIndex + " clicked");
+                    // Füge hier spezifische Aktionen für jeden linken Button hinzu
+                    switch (leftButtonIndex) {
+                        case 1:
+                            System.out.println("Action for Left Button 1");
+                            break;
+                        case 2:
+                            System.out.println("Action for Left Button 2");
+                            break;
+                        case 3:
+                            System.out.println("Action for Left Button 3");
+                            break;
+                        case 4:
+                            System.out.println("Action for Left Button 4");
+                            break;
+                        case 5:
+                            System.out.println("Action for Left Button 5");
+                            break;
+                    }
                 }
             });
             leftPanel.add(leftButton);
@@ -58,11 +76,30 @@ public class Gui {
         rightPanel.setLayout(new GridLayout(5, 1)); // 5 Buttons untereinander
 
         for (int i = 1; i <= 5; i++) {
-            JButton rightButton = new JButton("Right " + i);
+            JButton rightButton = new JButton("Right Button " + i);
+            final int rightButtonIndex = i;
             rightButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(rightButton.getText() + " clicked");
+                    System.out.println("Right Button " + rightButtonIndex + " clicked");
+                    // Füge hier spezifische Aktionen für jeden rechten Button hinzu
+                    switch (rightButtonIndex) {
+                        case 1:
+                            System.out.println("Action for Right Button 1");
+                            break;
+                        case 2:
+                            System.out.println("Action for Right Button 2");
+                            break;
+                        case 3:
+                            System.out.println("Action for Right Button 3");
+                            break;
+                        case 4:
+                            System.out.println("Action for Right Button 4");
+                            break;
+                        case 5:
+                            System.out.println("Action for Right Button 5");
+                            break;
+                    }
                 }
             });
             rightPanel.add(rightButton);
