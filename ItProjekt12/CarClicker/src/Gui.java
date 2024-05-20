@@ -19,25 +19,14 @@ public class Gui {
         JLabel counterLabel = new JLabel("Schrauben und Mutter (Img): 0");
         counterLabel.setHorizontalAlignment(SwingConstants.CENTER);
         myFrame.add(counterLabel, BorderLayout.PAGE_START);
-        ImageIcon car1 = new ImageIcon("C:\\Users\\Slmka\\Documents\\GitHub\\IT_SW_ProjektClicker\\ItProjekt12\\Img\\RX8_transparent.png");
 
-        // Erstellt Button für auto und einen ICon was danach eingefügt wird
+        // Erstellt Button für auto und einen Icon was danach eingefügt wird
+        ImageIcon car1 = new ImageIcon("C:\\Users\\Slmka\\Documents\\GitHub\\IT_SW_ProjektClicker\\ItProjekt12\\Img\\RX8_transparent.png");
         JButton clickButton = new JButton("Car (Img)");
         clickButton.setIcon(car1);
         myFrame.add(clickButton, BorderLayout.CENTER);
         // Fügt ActionListener zum Button hinzu
         clickButton.setPreferredSize(new Dimension(100, 50));
-
-        // rechte seite (LineEnd) wird erstellt die Buttons Werden in sowas wie einem
-        // Array gespeichert
-        JPanel lineEnd = createButtonPanellend("Licht/s", "Achse/s", "Karoserie/s", "Reifen/s", "Bremsen", "Auspuff/s",
-                "Motor/s", "Turbo/s", "?", "?");
-        myFrame.add(lineEnd, BorderLayout.LINE_END);
-
-        // Linke seite (LineStart) wird erstellt die Buttons Werden in sowas wie einem
-        // Array gespeichert
-        JPanel lineStart = createButtonPanellend("Scharaube zu Geld", "Wetten um Geld", "Neues Auto Kaufen");
-        myFrame.add(lineStart, BorderLayout.LINE_START);
 
         clickButton.addActionListener(new ActionListener() {
             @Override
@@ -49,32 +38,40 @@ public class Gui {
             }
         });
 
+        // Panel für linke Seite
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(5, 1)); // 5 Buttons untereinander
+
+        for (int i = 1; i <= 5; i++) {
+            JButton leftButton = new JButton("Left " + i);
+            leftButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(leftButton.getText() + " clicked");
+                }
+            });
+            leftPanel.add(leftButton);
+        }
+
+        // Panel für rechte Seite
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new GridLayout(5, 1)); // 5 Buttons untereinander
+
+        for (int i = 1; i <= 5; i++) {
+            JButton rightButton = new JButton("Right " + i);
+            rightButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(rightButton.getText() + " clicked");
+                }
+            });
+            rightPanel.add(rightButton);
+        }
+
+        // Füge Panels zu den entsprechenden BorderLayout-Positionen hinzu
+        myFrame.add(leftPanel, BorderLayout.WEST);
+        myFrame.add(rightPanel, BorderLayout.EAST);
+
         myFrame.setVisible(true);
-    }
-
-    public static JPanel createButtonPanelpStart(String... buttonLabels) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-
-        for (String label : buttonLabels) {
-            JButton button = new JButton(label);
-            button.setPreferredSize(new Dimension(100, 100));
-            panel.add(button);
-        }
-
-        return panel;
-    }
-
-    public static JPanel createButtonPanellend(String... buttonLabels) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        for (String label : buttonLabels) {
-            JButton button = new JButton(label);
-            button.setPreferredSize(new Dimension(100, 100));
-            panel.add(button);
-        }
-
-        return panel;
     }
 }
