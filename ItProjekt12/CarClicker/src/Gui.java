@@ -19,7 +19,7 @@ public class Gui {
         JLabel counterLabel = new JLabel("Schrauben und Mutter (Img): 0");
         counterLabel.setHorizontalAlignment(SwingConstants.CENTER);
         myFrame.add(counterLabel, BorderLayout.PAGE_START);
-        ImageIcon car1 = new ImageIcon("");
+        ImageIcon car1 = new ImageIcon("C:\\Users\\Slmka\\Documents\\GitHub\\IT_SW_ProjektClicker\\ItProjekt12\\Img\\RX8_transparent.png");
 
         // Erstellt Button für auto und einen ICon was danach eingefügt wird
         JButton clickButton = new JButton("Car (Img)");
