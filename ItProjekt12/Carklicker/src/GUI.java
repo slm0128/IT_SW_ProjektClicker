@@ -96,8 +96,15 @@ public class GUI {
     }
 
     private void handleLeftButtonAction(int index) {
-        // Add specific actions for each left button here
-        System.out.println("Action for Left Button " + index);
+        switch (index) {
+            case 0:
+                // Open the race frame when "Left Button A" is clicked
+                new RaceFrame();
+                break;
+            default:
+                System.out.println("Action for Left Button " + index);
+                break;
+        }
     }
 
     private void handleRightButtonAction(int index) {
