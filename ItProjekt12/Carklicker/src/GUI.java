@@ -79,11 +79,8 @@ public class GUI {
 
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-<<<<<<< HEAD
         String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "Karosserie"};
-=======
-        String[] rightButtonNames = {"Lichte", "Right Button 2", "Right Button 3", "Right Button 4", "Right Button 5"};
->>>>>>> 713a850142b969135c59cbb297d5e9870d11aa48
+        
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
