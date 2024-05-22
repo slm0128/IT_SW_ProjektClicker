@@ -7,6 +7,10 @@ public class GUI {
     private Klicker klicker;
     private JLabel counterLabel;
     private JButton lichtButton;
+    private JButton reifenButton;
+    private JButton motorButton;
+    private JButton turboButton;
+    private JButton karosserieButton;
 
     public GUI() {
         this.klicker = new Klicker();
@@ -75,7 +79,7 @@ public class GUI {
 
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-        String[] rightButtonNames = {"Licht", "Right Button 2", "Right Button 3", "Right Button 4", "Right Button 5"};
+        String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "Karosserie"};
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
@@ -88,6 +92,10 @@ public class GUI {
             rightPanel.add(rightButton);
         }
         lichtButton = (JButton) rightPanel.getComponent(0);
+        reifenButton = (JButton) rightPanel.getComponent(1);
+        motorButton = (JButton) rightPanel.getComponent(2);
+        turboButton = (JButton) rightPanel.getComponent(3);
+        karosserieButton = (JButton) rightPanel.getComponent(4);
         return rightPanel;
     }
 
@@ -121,6 +129,54 @@ public class GUI {
                     JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Licht upgrade", "Information", JOptionPane.DEFAULT_OPTION);
                 }
                 break;
+            case 1:
+                if (klicker.upgradeReifen()) {
+                    updateCounterLabel();
+                    reifenButton.setText("Reifen (Level " + klicker.getReifen() + ")");
+                    if (klicker.getReifen() >= 3) {
+                        reifenButton.setEnabled(false);
+                        reifenButton.setText("Reifen (Max Level)");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Reifen upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+                }
+                break;
+            case 2:
+                if (klicker.upgradeMotor()) {
+                    updateCounterLabel();
+                    motorButton.setText("Motor (Level " + klicker.getMotor() + ")");
+                    if (klicker.getMotor() >= 3) {
+                        motorButton.setEnabled(false);
+                        motorButton.setText("Motor (Max Level)");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Motor upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+                }
+                break;
+            case 3:
+                if (klicker.upgradeTurbo()) {
+                    updateCounterLabel();
+                    turboButton.setText("Turbo (Level " + klicker.getTurbo() + ")");
+                    if (klicker.getTurbo() >= 3) {
+                        turboButton.setEnabled(false);
+                        turboButton.setText("Turbo (Max Level)");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Turbo upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+                }
+                break;
+            case 4:
+                if (klicker.upgradeKarosserie()) {
+                    updateCounterLabel();
+                    karosserieButton.setText("Karosserie (Level " + klicker.getKarosserie() + ")");
+                    if (klicker.getKarosserie() >= 3) {
+                        karosserieButton.setEnabled(false);
+                        karosserieButton.setText("Karosserie (Max Level)");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Karosserie upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+                }
+                break;
             default:
                 System.out.println("Action for Right Button " + index);
                 break;
@@ -134,5 +190,15 @@ public class GUI {
                 new GUI();
             }
         });
+    }
+}
+
+class RaceFrame extends JFrame {
+    public RaceFrame() {
+        setTitle("Race Frame");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
 }
