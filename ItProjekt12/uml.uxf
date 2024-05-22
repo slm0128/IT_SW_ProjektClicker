@@ -1,17 +1,31 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>472</x><y>0</y><w>280</w><h>160</h></coordinates><panel_attributes>GUI
+<diagram program="umletino" version="15.1"><zoom_level>16</zoom_level><element><id>UMLClass</id><coordinates><x>240</x><y>58</y><w>560</w><h>432</h></coordinates><panel_attributes>GUI
+--
+- klicker: Klicker
+- counterLabel: JLabel
+- lichtButton: JButton
+--
++ GUI()
++ createAndShowGUI()
++ createCounterLabel(): JLabel
++ createCarButton(): JButton
++ createLeftPanel(): JPanel
++ createRightPanel(): JPanel
++ updateCounterLabel()
++ handleLeftButtonAction(index: int)
++ handleRightButtonAction(index: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>602</y><w>560</w><h>320</h></coordinates><panel_attributes>Klicker
+--
+- counter: int
+- licht: int
+- upgrade: int
+--
++ Klicker()
++ getCounter(): int
++ getLicht(): int
++ getUpgarde(): int
++ incrementCounter()
++upgradeLicht(): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>1258</y><w>560</w><h>320</h></coordinates><panel_attributes>Rennen
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>472</x><y>296</y><w>280</w><h>160</h></coordinates><panel_attributes>Player
---
-
---
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>560</y><w>280</w><h>160</h></coordinates><panel_attributes>Klicker
---
-
---
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>560</y><w>280</w><h>160</h></coordinates><panel_attributes>Rennen
---
-
---
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>744</x><y>448</y><w>152</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;140</additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>448</y><w>136</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>616</y><w>544</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;660;10</additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>680</y><w>544</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>660;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>592</x><y>152</y><w>24</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;180</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
