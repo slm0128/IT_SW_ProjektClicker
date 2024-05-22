@@ -1,9 +1,12 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>558</x><y>0</y><w>315</w><h>243</h></coordinates><panel_attributes>GUI
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>520</x><y>0</y><w>350</w><h>270</h></coordinates><panel_attributes>GUI
 --
+
 - klicker: Klicker
 - counterLabel: JLabel
 - lichtButton: JButton
+
 --
+
 + GUI()
 + createAndShowGUI()
 + createCounterLabel(): JLabel
@@ -12,20 +15,29 @@
 + createRightPanel(): JPanel
 + updateCounterLabel()
 + handleLeftButtonAction(index: int)
-+ handleRightButtonAction(index: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>558</x><y>306</y><w>315</w><h>180</h></coordinates><panel_attributes>Klicker
++ handleRightButtonAction(index: int)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>340</y><w>360</w><h>250</h></coordinates><panel_attributes>Klicker
 --
+
 - counter: int
 - licht: int
 - upgrade: int
+
 --
+
 + Klicker()
 + getCounter(): int
 + getLicht(): int
 + getUpgarde(): int
 + incrementCounter()
-+upgradeLicht(): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>567</x><y>594</y><w>315</w><h>180</h></coordinates><panel_attributes>Rennen
++ upgradeLicht(): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>660</y><w>350</w><h>200</h></coordinates><panel_attributes>RaceFrame
 --
 
+-raceStatus: JLabel
+
 --
+
++ RaceFrame()
++ startRace()
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>
