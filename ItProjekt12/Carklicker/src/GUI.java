@@ -62,7 +62,7 @@ public class GUI {
 
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
-        String[] leftButtonNames = {"Left Button A", "Left Button B", "Left Button C", "Left Button D", "Left Button E"};
+        String[] leftButtonNames = {"Race/Wetten", "Left Button B", "Left Button C", "Left Button D", "Left Button E"};
         for (int i = 0; i < leftButtonNames.length; i++) {
             JButton leftButton = new JButton(leftButtonNames[i]);
             int index = i;
@@ -79,8 +79,7 @@ public class GUI {
 
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-        String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "Karosserie"};
-        
+        String[] rightButtonNames = {"Lichte", "Right Button 2", "Right Button 3", "Right Button 4", "Right Button 5"};
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
