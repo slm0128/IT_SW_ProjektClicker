@@ -18,8 +18,7 @@ public class Gui {
         myFrame.setLayout(new BorderLayout());
 
         // Counter label
-        counterLabel = new JLabel("Schrauben und Mutter: 0");
-        counterLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        counterLabel = createCounterLabel();
         myFrame.add(counterLabel, BorderLayout.PAGE_START);
 
         // Car button with image
@@ -34,6 +33,13 @@ public class Gui {
         myFrame.add(rightPanel, BorderLayout.EAST);
 
         myFrame.setVisible(true);
+    }
+
+    private static JLabel createCounterLabel() {
+        JLabel label = new JLabel("Schrauben und Mutter: 0");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setPreferredSize(new Dimension(800, 50)); // Set the preferred size (width, height)
+        return label;
     }
 
     private static JButton createCarButton() {
@@ -148,7 +154,11 @@ public class Gui {
                         }
                     }
                 } else {
-                    System.out.println("Not enough Schrauben und Mutter for Licht upgrade");
+                 JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Licht upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+
+
+
+
                 }
                 break;
             case 1:
