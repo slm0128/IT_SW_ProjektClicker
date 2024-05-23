@@ -47,7 +47,7 @@ public class GUI {
     }
 
     private JButton createCarButton() {
-        ImageIcon car1 = new ImageIcon("C:\\Users\\Slmka\\Documents\\GitHub\\IT_SW_ProjektClicker\\ItProjekt12\\Carklicker\\images\\RX8_transparent.png");
+        ImageIcon car1 = new ImageIcon("/CarKlicker/images/RX8_transparent");
         JButton clickButton = new JButton("Car (Img)", car1);
         clickButton.setPreferredSize(new Dimension(100, 50));
         clickButton.addActionListener(new ActionListener() {
