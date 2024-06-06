@@ -69,7 +69,7 @@ public class GUI {
     // Erstellt das linke Panel mit den Schaltflächen
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
-        String[] leftButtonNames = {"Wetten", "Rennen", "Neues Auto    "};
+        String[] leftButtonNames = {"Wetten", "Rennen", "         Neues Auto         "};
         for (int i = 0; i < leftButtonNames.length; i++) {
             JButton leftButton = new JButton(leftButtonNames[i]);
             int index = i;
@@ -87,7 +87,7 @@ public class GUI {
     // Erstellt das rechte Panel mit den Upgrade-Schaltflächen
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-        String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "Karosserie"};
+        String[] rightButtonNames = {"Licht","Reifen","Motor","Turbo","         Karosserie         "};
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
