@@ -65,6 +65,10 @@ public class Klicker {
         }
     }
 
+    public void incrementCounterBy(int amount) {
+        counter += amount;
+    }
+
     public boolean upgradeLicht() {
         int cost;
         switch (licht) {

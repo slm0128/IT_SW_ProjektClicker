@@ -20,7 +20,7 @@ public class GUI {
     private void createAndShowGUI() {
         JFrame myFrame = new JFrame("Car Clicker");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setSize(800, 600);
+        myFrame.setSize(1400, 1200);
         myFrame.setLocationRelativeTo(null);
         myFrame.setLayout(new BorderLayout());
 
@@ -47,8 +47,8 @@ public class GUI {
     }
 
     private JButton createCarButton() {
-        ImageIcon car1 = new ImageIcon("CarKlicker/images/RX8_transparent.png");
-        JButton clickButton = new JButton(car1);
+        ImageIcon car = new ImageIcon("CarKlicker/images/RX8_transparent.png");
+        JButton clickButton = new JButton(car);
         clickButton.setPreferredSize(new Dimension(100, 50));
         clickButton.addActionListener(new ActionListener() {
             @Override
@@ -62,7 +62,7 @@ public class GUI {
 
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
-        String[] leftButtonNames = {"Race/Wetten", "Left Button B", "Left Button C", "Left Button D", "Left Button E"};
+        String[] leftButtonNames = {"Wetten", "Rennen"};
         for (int i = 0; i < leftButtonNames.length; i++) {
             JButton leftButton = new JButton(leftButtonNames[i]);
             int index = i;
@@ -106,8 +106,12 @@ public class GUI {
     private void handleLeftButtonAction(int index) {
         switch (index) {
             case 0:
-                // Open the race frame when "Left Button A" is clicked
-                new RaceFrame();
+                // Öffnet wetten "Wetten Button"
+                new Wetten();
+                break;
+            case 1:
+                // Startet Rennen "Rennen"
+                new RacingGame(klicker);
                 break;
             default:
                 System.out.println("Action for Left Button " + index);
@@ -190,15 +194,5 @@ public class GUI {
                 new GUI();
             }
         });
-    }
-}
-
-class RaceFrame extends JFrame {
-    public RaceFrame() {
-        setTitle("Race Frame");
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setVisible(true);
     }
 }

@@ -3,10 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RaceFrame extends JFrame {
+public class Wetten extends JFrame {
     private JLabel raceStatus;
 
-    public RaceFrame() {
+    public Wetten() {
         setTitle("Race");
         setSize(800, 600);
         setLocationRelativeTo(null);
