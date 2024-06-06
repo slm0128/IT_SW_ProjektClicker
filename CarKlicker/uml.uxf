@@ -1,43 +1,109 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>520</x><y>0</y><w>350</w><h>270</h></coordinates><panel_attributes>GUI
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notesRacingGame
+--
+
+- gamePanel: JPanel
+- carLabel: JLabel
+- gameTimer: Timer
+- hindernisseTimer: Timer
+- hindernisse: ArrayList&lt;JLabel&gt;
+- carXPosition: int
+- klicker: Klicker
+- HINDERNISSE_WIDTH: int
+- HINDERNISSE_HEIGHT: int
+- CAR_WIDTH: int
+- CAR_HEIGHT: int
+
+--
+
+RacingGame(klicker: Klicker)
+- moveCarLeft(): void
+- moveCarRight(): void
+- generateHindernisse(): void
+- moveHindernisse(): void
+- checkCollision(): void
+</help_text><element><id>UMLClass</id><coordinates><x>264</x><y>327</y><w>424</w><h>304</h></coordinates><panel_attributes>GUI
 --
 
 - klicker: Klicker
 - counterLabel: JLabel
 - lichtButton: JButton
+- reifenButton: JButton
+- motorButton: JButton
+- turboButton: JButton
+- karosserieButton: JButton
 
 --
 
 + GUI()
-+ createAndShowGUI()
-+ createCounterLabel(): JLabel
-+ createCarButton(): JButton
-+ createLeftPanel(): JPanel
-+ createRightPanel(): JPanel
-+ updateCounterLabel()
-+ handleLeftButtonAction(index: int)
-+ handleRightButtonAction(index: int)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>340</y><w>360</w><h>250</h></coordinates><panel_attributes>Klicker
+-createAndShowGUI(): void
+- createCounterLabel(): JLabel
+- createCarButton(): JButton
+- createLeftPanel(): JPanel
+- createRightPanel(): JPanel
+- updateCounterLabel(): void
+- handleLeftButtonAction(index: int): void
+- handleRightButtonAction(index: int): void
+- updateButton(button: JButton, componentName: String, level: int, upgraded: boolean): </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>264</x><y>711</y><w>424</w><h>344</h></coordinates><panel_attributes>Klicker
 --
 
 - counter: int
 - licht: int
 - upgrade: int
+- reifen: int
+- motor: int
+- turbo: int
+- karosserie: int
 
 --
 
-+ Klicker()
 + getCounter(): int
 + getLicht(): int
-+ getUpgarde(): int
-+ incrementCounter()
++ getReifen(): int
++ getMotor(): int
++ getTurbo(): int
++ getKarosserie(): int
++ getUpgrade(): int
++ incrementCounter(): void
++ incrementCounterBy(amount: int): void
 + upgradeLicht(): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>660</y><w>350</w><h>200</h></coordinates><panel_attributes>RaceFrame
++ upgradeReifen(): boolean
++ upgradeMotor(): boolean
++ upgradeTurbo(): boolean
++ upgradeKarosserie(): boolean
++ upgradeComponent(component: String, costs: int[]): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>264</x><y>167</y><w>432</w><h>72</h></coordinates><panel_attributes>Start
 --
 
--raceStatus: JLabel
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>264</x><y>1119</y><w>432</w><h>344</h></coordinates><panel_attributes>RacingGame
+--
+
+- gamePanel: JPanel
+- carLabel: JLabel
+- gameTimer: Timer
+- hindernisseTimer: Timer
+- hindernisse: ArrayList&lt;JLabel&gt;
+- carXPosition: int
+- klicker: Klicker
+- HINDERNISSE_WIDTH: int
+- HINDERNISSE_HEIGHT: int
+- CAR_WIDTH: int
+- CAR_HEIGHT: int
 
 --
 
-+ RaceFrame()
-+ startRace()
++ RacingGame(klicker: Klicker)
+- moveCarLeft(): void
+- moveCarRight(): void
+- generateHindernisse(): void
+- moveHindernisse(): void
+- checkCollision(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>264</x><y>1503</y><w>432</w><h>344</h></coordinates><panel_attributes>Wetten                
+--
+
+- raceStatus: JLabel
+--
+
+- Wetten()
+- StartRace():void
+
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>

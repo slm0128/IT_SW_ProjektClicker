@@ -1,11 +1,14 @@
+/**
+ * Die Klicker-Klasse verwaltet den Zähler und die Upgrades für das Spiel.
+ */
 public class Klicker {
-    private int counter;
-    private int licht;
-    private int upgrade;
-    private int reifen;
-    private int motor;
-    private int turbo;
-    private int karosserie;
+    private int counter;  // Zähler für Schrauben und Mutter
+    private int licht;    // Level des Licht-Upgrades
+    private int upgrade;  // Allgemeiner Upgrade-Level
+    private int reifen;   // Level des Reifen-Upgrades
+    private int motor;    // Level des Motor-Upgrades
+    private int turbo;    // Level des Turbo-Upgrades
+    private int karosserie;  // Level des Karosserie-Upgrades
 
     public Klicker() {
         this.counter = 0;
@@ -17,6 +20,7 @@ public class Klicker {
         this.karosserie = 0;
     }
 
+    // Getter-Methoden für die verschiedenen Felder
     public int getCounter() {
         return counter;
     }
@@ -45,114 +49,82 @@ public class Klicker {
         return upgrade;
     }
 
+    // Erhöht den Zähler basierend auf dem aktuellen Upgrade-Level
     public void incrementCounter() {
-        switch (upgrade) {
-            case 1: counter++; break;
-            case 2: counter += 2; break;
-            case 3: counter += 3; break;
-            case 4: counter += 4; break;
-            case 5: counter += 5; break;
-            case 6: counter += 6; break;
-            case 7: counter += 7; break;
-            case 8: counter += 8; break;
-            case 9: counter += 9; break;
-            case 10: counter += 10; break;
-            case 11: counter += 11; break;
-            case 12: counter += 12; break;
-            case 13: counter += 13; break;
-            case 14: counter += 14; break;
-            case 15: counter += 15; break;
-        }
+        counter += upgrade;
     }
 
+    // Erhöht den Zähler um einen bestimmten Betrag
     public void incrementCounterBy(int amount) {
         counter += amount;
     }
 
+    // Methode zum Upgrade der Licht-Komponente
     public boolean upgradeLicht() {
-        int cost;
-        switch (licht) {
-            case 0: cost = 10; break;
-            case 1: cost = 40; break;
-            case 2: cost = 80; break;
-            default: return false; // Max 
-        }
-
-        if (counter >= cost) {
-            counter -= cost;
-            licht++;
-            upgrade++;
-            return true;
-        }
-        return false;
+        return upgradeComponent("licht", 10, 40, 80);
     }
 
+    // Methode zum Upgrade der Reifen-Komponente
     public boolean upgradeReifen() {
-        int cost;
-        switch (reifen) {
-            case 0: cost = 300; break;
-            case 1: cost = 600; break;
-            case 2: cost = 1200; break;
-            default: return false; // Max 
-        }
-
-        if (counter >= cost) {
-            counter -= cost;
-            reifen++;
-            upgrade++;
-            return true;
-        }
-        return false;
+        return upgradeComponent("reifen", 300, 600, 1200);
     }
 
+    // Methode zum Upgrade der Motor-Komponente
     public boolean upgradeMotor() {
-        int cost;
-        switch (motor) {
-            case 0: cost = 500; break;
-            case 1: cost = 1000; break;
-            case 2: cost = 2000; break;
-            default: return false; // Max 
-        }
-
-        if (counter >= cost) {
-            counter -= cost;
-            motor++;
-            upgrade++;
-            return true;
-        }
-        return false;
+        return upgradeComponent("motor", 500, 1000, 2000);
     }
 
+    // Methode zum Upgrade der Turbo-Komponente
     public boolean upgradeTurbo() {
-        int cost;
-        switch (turbo) {
-            case 0: cost = 700; break;
-            case 1: cost = 1400; break;
-            case 2: cost = 2800; break;
-            default: return false; // Max 
-        }
-
-        if (counter >= cost) {
-            counter -= cost;
-            turbo++;
-            upgrade++;
-            return true;
-        }
-        return false;
+        return upgradeComponent("turbo", 700, 1400, 2800);
     }
 
+    // Methode zum Upgrade der Karosserie-Komponente
     public boolean upgradeKarosserie() {
-        int cost;
-        switch (karosserie) {
-            case 0: cost = 1000; break;
-            case 1: cost = 2000; break;
-            case 2: cost = 4000; break;
-            default: return false; // Max 
+        return upgradeComponent("karosserie", 1000, 2000, 4000);
+    }
+
+    // Allgemeine Methode zum Upgrade von Komponenten, um Code-Duplikate zu vermeiden
+    private boolean upgradeComponent(String component, int... costs) {
+        int level = 0;
+        switch (component) {
+            case "licht":
+                level = licht;
+                break;
+            case "reifen":
+                level = reifen;
+                break;
+            case "motor":
+                level = motor;
+                break;
+            case "turbo":
+                level = turbo;
+                break;
+            case "karosserie":
+                level = karosserie;
+                break;
         }
 
-        if (counter >= cost) {
-            counter -= cost;
-            karosserie++;
+        // Überprüft, ob das Upgrade möglich ist
+        if (level < costs.length && counter >= costs[level]) {
+            counter -= costs[level];
+            switch (component) {
+                case "licht":
+                    licht++;
+                    break;
+                case "reifen":
+                    reifen++;
+                    break;
+                case "motor":
+                    motor++;
+                    break;
+                case "turbo":
+                    turbo++;
+                    break;
+                case "karosserie":
+                    karosserie++;
+                    break;
+            }
             upgrade++;
             return true;
         }

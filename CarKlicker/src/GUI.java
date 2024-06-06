@@ -3,9 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Die GUI-Klasse erstellt und verwaltet die grafische Benutzeroberfläche des Spiels.
+ */
 public class GUI {
     private Klicker klicker;
-    private JLabel counterLabel;
+    private JLabel counterLabel;  // Label zur Anzeige des aktuellen Zählers
     private JButton lichtButton;
     private JButton reifenButton;
     private JButton motorButton;
@@ -17,6 +20,7 @@ public class GUI {
         createAndShowGUI();
     }
 
+    // Erstellt und zeigt das GUI-Fenster
     private void createAndShowGUI() {
         JFrame myFrame = new JFrame("Car Clicker");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +43,7 @@ public class GUI {
         myFrame.setVisible(true);
     }
 
+    // Erstellt das Label zur Anzeige des Zählers
     private JLabel createCounterLabel() {
         JLabel label = new JLabel("Schrauben und Mutter: 0");
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -46,6 +51,7 @@ public class GUI {
         return label;
     }
 
+    // Erstellt den Button zum Klicken auf das Auto
     private JButton createCarButton() {
         ImageIcon car = new ImageIcon("CarKlicker/images/RX8_transparent.png");
         JButton clickButton = new JButton(car);
@@ -60,6 +66,7 @@ public class GUI {
         return clickButton;
     }
 
+    // Erstellt das linke Panel mit den Schaltflächen
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
         String[] leftButtonNames = {"Wetten", "Rennen"};
@@ -77,9 +84,10 @@ public class GUI {
         return leftPanel;
     }
 
+    // Erstellt das rechte Panel mit den Upgrade-Schaltflächen
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-        String[] rightButtonNames = {"Lichte", "Right Button 2", "Right Button 3", "Right Button 4", "Right Button 5"};
+        String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "Karosserie"};
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
@@ -99,18 +107,18 @@ public class GUI {
         return rightPanel;
     }
 
+    // Aktualisiert das Zähler-Label
     private void updateCounterLabel() {
         counterLabel.setText("Schrauben und Mutter: " + klicker.getCounter());
     }
 
+    // Behandelt die Aktionen der linken Schaltflächen
     private void handleLeftButtonAction(int index) {
         switch (index) {
             case 0:
-                // Öffnet wetten "Wetten Button"
                 new Wetten();
                 break;
             case 1:
-                // Startet Rennen "Rennen"
                 new RacingGame(klicker);
                 break;
             default:
@@ -119,80 +127,49 @@ public class GUI {
         }
     }
 
+    // Behandelt die Aktionen der rechten Schaltflächen (Upgrades)
     private void handleRightButtonAction(int index) {
+        boolean upgraded = false;
         switch (index) {
             case 0:
-                if (klicker.upgradeLicht()) {
-                    updateCounterLabel();
-                    lichtButton.setText("Licht (Level " + klicker.getLicht() + ")");
-                    if (klicker.getLicht() >= 3) {
-                        lichtButton.setEnabled(false);
-                        lichtButton.setText("Licht (Max Level)");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Licht upgrade", "Information", JOptionPane.DEFAULT_OPTION);
-                }
+                upgraded = klicker.upgradeLicht();
+                updateButton(lichtButton, "Licht", klicker.getLicht(), upgraded);
                 break;
             case 1:
-                if (klicker.upgradeReifen()) {
-                    updateCounterLabel();
-                    reifenButton.setText("Reifen (Level " + klicker.getReifen() + ")");
-                    if (klicker.getReifen() >= 3) {
-                        reifenButton.setEnabled(false);
-                        reifenButton.setText("Reifen (Max Level)");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Reifen upgrade", "Information", JOptionPane.DEFAULT_OPTION);
-                }
+                upgraded = klicker.upgradeReifen();
+                updateButton(reifenButton, "Reifen", klicker.getReifen(), upgraded);
                 break;
             case 2:
-                if (klicker.upgradeMotor()) {
-                    updateCounterLabel();
-                    motorButton.setText("Motor (Level " + klicker.getMotor() + ")");
-                    if (klicker.getMotor() >= 3) {
-                        motorButton.setEnabled(false);
-                        motorButton.setText("Motor (Max Level)");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Motor upgrade", "Information", JOptionPane.DEFAULT_OPTION);
-                }
+                upgraded = klicker.upgradeMotor();
+                updateButton(motorButton, "Motor", klicker.getMotor(), upgraded);
                 break;
             case 3:
-                if (klicker.upgradeTurbo()) {
-                    updateCounterLabel();
-                    turboButton.setText("Turbo (Level " + klicker.getTurbo() + ")");
-                    if (klicker.getTurbo() >= 3) {
-                        turboButton.setEnabled(false);
-                        turboButton.setText("Turbo (Max Level)");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Turbo upgrade", "Information", JOptionPane.DEFAULT_OPTION);
-                }
+                upgraded = klicker.upgradeTurbo();
+                updateButton(turboButton, "Turbo", klicker.getTurbo(), upgraded);
                 break;
             case 4:
-                if (klicker.upgradeKarosserie()) {
-                    updateCounterLabel();
-                    karosserieButton.setText("Karosserie (Level " + klicker.getKarosserie() + ")");
-                    if (klicker.getKarosserie() >= 3) {
-                        karosserieButton.setEnabled(false);
-                        karosserieButton.setText("Karosserie (Max Level)");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Karosserie upgrade", "Information", JOptionPane.DEFAULT_OPTION);
-                }
+                upgraded = klicker.upgradeKarosserie();
+                updateButton(karosserieButton, "Karosserie", klicker.getKarosserie(), upgraded);
                 break;
             default:
                 System.out.println("Action for Right Button " + index);
                 break;
         }
+        if (!upgraded) {
+            JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Upgrade", "Information", JOptionPane.DEFAULT_OPTION);
+        } else {
+            updateCounterLabel();
+        }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GUI();
+    // Aktualisiert den Text und den Status der Schaltfläche nach einem Upgrade
+    private void updateButton(JButton button, String componentName, int level, boolean upgraded) {
+        if (upgraded) {
+            button.setText(componentName + " (Level " + level + ")");
+            if (level >= 3) {
+                button.setEnabled(false);
+                button.setText(componentName + " (Max Level)");
             }
-        });
+        }
     }
 }

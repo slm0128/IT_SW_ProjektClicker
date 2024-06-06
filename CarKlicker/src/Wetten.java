@@ -3,8 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Die Wetten-Klasse verwaltet das Wetten-Minispiel.
+ */
 public class Wetten extends JFrame {
-    private JLabel raceStatus;
+    private JLabel raceStatus;  // Label zur Anzeige des Rennstatus
 
     public Wetten() {
         setTitle("Race");
@@ -29,11 +32,9 @@ public class Wetten extends JFrame {
         setVisible(true);
     }
 
+    // Startet das Rennen
     private void startRace() {
-        // Simulate race logic here
         raceStatus.setText("Race is running...");
-        // Update raceStatus to "Race finished!" after race logic ends
-        // You can add more complex race logic here
         Timer timer = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

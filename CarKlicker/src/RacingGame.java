@@ -7,18 +7,21 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Die RacingGame-Klasse verwaltet das Rennen-Minispiel.
+ */
 public class RacingGame extends JFrame {
-    private JPanel gamePanel;
-    private JLabel carLabel;
-    private Timer gameTimer;
-    private Timer hindernisseTimer;
-    private ArrayList<JLabel> hindernisse;
-    private int carXPosition;
+    private JPanel gamePanel;  // Panel für das Rennen
+    private JLabel carLabel;  // Label für das Auto
+    private Timer gameTimer;  // Timer für das Spiel
+    private Timer hindernisseTimer;  // Timer für die Hindernisse
+    private ArrayList<JLabel> hindernisse;  // Liste der Hindernisse
+    private int carXPosition;  // X-Position des Autos
     private Klicker klicker;
-    private final int HINDERNISSE_WIDTH = 50; // Breite der Hindernisse
-    private final int HINDERNISSE_HEIGHT = 50; // Höhe der Hindernisse
-    private final int CAR_WIDTH = 60; // Breite des Autos
-    private final int CAR_HEIGHT = 120; // Höhe des Autos
+    private final int HINDERNISSE_WIDTH = 50;  // Breite der Hindernisse
+    private final int HINDERNISSE_HEIGHT = 50;  // Höhe der Hindernisse
+    private final int CAR_WIDTH = 60;  // Breite des Autos
+    private final int CAR_HEIGHT = 120;  // Höhe des Autos
 
     public RacingGame(Klicker klicker) {
         this.klicker = klicker;
@@ -35,7 +38,6 @@ public class RacingGame extends JFrame {
         gamePanel.setLayout(null);
         add(gamePanel);
 
-        // Auto-Bild laden und skalieren
         ImageIcon carIcon = new ImageIcon("CarKlicker/images/Car.png");
         Image carImage = carIcon.getImage().getScaledInstance(CAR_WIDTH, CAR_HEIGHT, Image.SCALE_SMOOTH);
         carIcon = new ImageIcon(carImage);
@@ -71,6 +73,7 @@ public class RacingGame extends JFrame {
         setVisible(true);
     }
 
+    // Bewegt das Auto nach links
     private void moveCarLeft() {
         if (carXPosition > 0) {
             carXPosition -= 10;
@@ -78,6 +81,7 @@ public class RacingGame extends JFrame {
         }
     }
 
+    // Bewegt das Auto nach rechts
     private void moveCarRight() {
         if (carXPosition < 750 - CAR_WIDTH) {
             carXPosition += 10;
@@ -85,6 +89,7 @@ public class RacingGame extends JFrame {
         }
     }
 
+    // Generiert Hindernisse in zufälligen Intervallen
     private void generateHindernisse() {
         hindernisseTimer = new Timer(2000, new ActionListener() {
             @Override
@@ -104,13 +109,14 @@ public class RacingGame extends JFrame {
         hindernisseTimer.start();
     }
 
+    // Bewegt die Hindernisse nach unten
     private void moveHindernisse() {
         ArrayList<JLabel> hindernisseToRemove = new ArrayList<>();
         for (JLabel hindernis : hindernisse) {
             int y = hindernis.getY() + 15;
             if (y > 600) {
                 hindernisseToRemove.add(hindernis);
-                klicker.incrementCounterBy(10); // Counter um 10 erhöhen
+                klicker.incrementCounterBy(10); // Erhöht den Zähler um 10
             } else {
                 hindernis.setBounds(hindernis.getX(), y, HINDERNISSE_WIDTH, HINDERNISSE_HEIGHT);
             }
@@ -122,6 +128,7 @@ public class RacingGame extends JFrame {
         gamePanel.repaint();
     }
 
+    // Überprüft auf Kollisionen zwischen dem Auto und den Hindernissen
     private void checkCollision() {
         Rectangle carBounds = carLabel.getBounds();
         for (JLabel hindernis : hindernisse) {
