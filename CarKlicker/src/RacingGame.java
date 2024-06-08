@@ -22,9 +22,12 @@ public class RacingGame extends JFrame {
     private final int HINDERNISSE_HEIGHT = 50;  // Höhe der Hindernisse
     private final int CAR_WIDTH = 60;  // Breite des Autos
     private final int CAR_HEIGHT = 120;  // Höhe des Autos
+    private int hindernisseSpeed; // Geschwindigkeit der Hindernisse
 
     public RacingGame(Klicker klicker) {
         this.klicker = klicker;
+        this.hindernisseSpeed = 15; // Initiale Geschwindigkeit der Hindernisse
+        
         setTitle("Rennen");
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -69,6 +72,7 @@ public class RacingGame extends JFrame {
         });
 
         generateHindernisse();
+        increaseHindernisseSpeed();
 
         setVisible(true);
     }
@@ -109,14 +113,25 @@ public class RacingGame extends JFrame {
         hindernisseTimer.start();
     }
 
+    // Erhöht die Geschwindigkeit der Hindernisse in regelmäßigen Abständen alle 5 sek
+    private void increaseHindernisseSpeed() {
+        Timer speedTimer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hindernisseSpeed += 2;
+            }
+        });
+        speedTimer.start();
+    }
+
     // Bewegt die Hindernisse nach unten
     private void moveHindernisse() {
         ArrayList<JLabel> hindernisseToRemove = new ArrayList<>();
         for (JLabel hindernis : hindernisse) {
-            int y = hindernis.getY() + 15;
+            int y = hindernis.getY() + hindernisseSpeed;
             if (y > 600) {
                 hindernisseToRemove.add(hindernis);
-                klicker.incrementCounterBy(10); // Erhöht den Zähler um 10
+                klicker.incrementCounterBy(5); // Erhöht den Zähler um X
             } else {
                 hindernis.setBounds(hindernis.getX(), y, HINDERNISSE_WIDTH, HINDERNISSE_HEIGHT);
             }

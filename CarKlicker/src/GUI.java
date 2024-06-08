@@ -8,12 +8,16 @@ import java.awt.event.ActionListener;
  */
 public class GUI {
     private Klicker klicker;
-    private JLabel counterLabel;  // Label zur Anzeige des aktuellen Zählers
+    private JLabel counterLabel;
     private JButton lichtButton;
     private JButton reifenButton;
     private JButton motorButton;
     private JButton turboButton;
     private JButton karosserieButton;
+    private JButton carButton;
+    private JButton neuesAutoButton;
+    private ImageIcon initialCarIcon;
+    private ImageIcon newCarIcon;
 
     public GUI() {
         this.klicker = new Klicker();
@@ -31,8 +35,8 @@ public class GUI {
         counterLabel = createCounterLabel();
         myFrame.add(counterLabel, BorderLayout.PAGE_START);
 
-        JButton clickButton = createCarButton();
-        myFrame.add(clickButton, BorderLayout.CENTER);
+        carButton = createCarButton();
+        myFrame.add(carButton, BorderLayout.CENTER);
 
         JPanel leftPanel = createLeftPanel();
         JPanel rightPanel = createRightPanel();
@@ -53,8 +57,9 @@ public class GUI {
 
     // Erstellt den Button zum Klicken auf das Auto
     private JButton createCarButton() {
-        ImageIcon car = new ImageIcon("CarKlicker/images/RX8_transparent.png");
-        JButton clickButton = new JButton(car);
+        initialCarIcon = new ImageIcon("CarKlicker/images/RX8_transparent.png");
+        newCarIcon = new ImageIcon("CarKlicker/images/new_car_image.png");
+        JButton clickButton = new JButton(initialCarIcon);
         clickButton.setPreferredSize(new Dimension(100, 50));
         clickButton.addActionListener(new ActionListener() {
             @Override
@@ -81,13 +86,15 @@ public class GUI {
             });
             leftPanel.add(leftButton);
         }
+        neuesAutoButton = (JButton) leftPanel.getComponent(2);
+        neuesAutoButton.setEnabled(false);
         return leftPanel;
     }
 
     // Erstellt das rechte Panel mit den Upgrade-Schaltflächen
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
-        String[] rightButtonNames = {"Licht","Reifen","Motor","Turbo","         Karosserie         "};
+        String[] rightButtonNames = {"Licht", "Reifen", "Motor", "Turbo", "         Karosserie         "};
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
             int index = i;
@@ -120,6 +127,9 @@ public class GUI {
                 break;
             case 1:
                 new RacingGame(klicker);
+                break;
+            case 2:
+                resetGame();
                 break;
             default:
                 System.out.println("Action for Left Button " + index);
@@ -159,6 +169,14 @@ public class GUI {
             JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Upgrade", "Information", JOptionPane.DEFAULT_OPTION);
         } else {
             updateCounterLabel();
+            checkAllUpgradesMaxed();
+        }
+    }
+
+    // Überprüft, ob alle Upgrades auf Maximallevel sind und aktiviert den "Neues Auto"-Button
+    private void checkAllUpgradesMaxed() {
+        if (klicker.areAllUpgradesMaxed()) {
+            neuesAutoButton.setEnabled(true);
         }
     }
 
@@ -166,10 +184,23 @@ public class GUI {
     private void updateButton(JButton button, String componentName, int level, boolean upgraded) {
         if (upgraded) {
             button.setText(componentName + " (Level " + level + ")");
-            if (level >= 3) {
+            if (level >= Klicker.MAX_LEVEL) {
                 button.setEnabled(false);
                 button.setText(componentName + " (Max Level)");
             }
         }
+    }
+
+    // Setzt das Spiel zurück und aktualisiert die GUI
+    private void resetGame() {
+        klicker.resetValues();
+        updateCounterLabel();
+        updateButton(lichtButton, "Licht", klicker.getLicht(), true);
+        updateButton(reifenButton, "Reifen", klicker.getReifen(), true);
+        updateButton(motorButton, "Motor", klicker.getMotor(), true);
+        updateButton(turboButton, "Turbo", klicker.getTurbo(), true);
+        updateButton(karosserieButton, "Karosserie", klicker.getKarosserie(), true);
+        carButton.setIcon(newCarIcon);
+        neuesAutoButton.setEnabled(false);
     }
 }
