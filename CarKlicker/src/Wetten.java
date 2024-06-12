@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
  * Die Wetten-Klasse verwaltet das Wetten-Minispiel.
  */
 public class Wetten extends JFrame {
-    private JLabel raceStatus;  // Label zur Anzeige des Rennstatus
+    private JLabel raceStatus; // Label zur Anzeige des Rennstatus
 
     public Wetten() {
         setTitle("Race");
