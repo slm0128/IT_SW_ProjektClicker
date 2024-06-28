@@ -20,6 +20,7 @@ public class RacingGame extends JFrame {
     private final int CAR_WIDTH = 60; // Breite des Autos
     private final int CAR_HEIGHT = 120; // Höhe des Autos
     private int hindernisseSpeed; // Geschwindigkeit der Hindernisse
+    
 
     public RacingGame(Klicker klicker) {
         this.klicker = klicker;
@@ -129,6 +130,7 @@ public class RacingGame extends JFrame {
             if (y > 600) {
                 hindernisseToRemove.add(hindernis);
                 klicker.incrementCounterBy(5); // Erhöht den Zähler um X
+                klicker.update();
             } else {
                 hindernis.setBounds(hindernis.getX(), y, HINDERNISSE_WIDTH, HINDERNISSE_HEIGHT);
             }
