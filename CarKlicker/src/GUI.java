@@ -80,7 +80,7 @@ public class GUI {
     private BackgroundButton createCarButton() {
         initialCarIcon = new ImageIcon("CarKlicker/images/car1.png");
         newCarIcon = new ImageIcon("CarKlicker/images/Car2.png");
-        Image backgroundImage = new ImageIcon("CarKlicker/images/Hintergrund.jpg").getImage();
+        Image backgroundImage = new ImageIcon("CarKlicker/images/Hintergrund.jpeg").getImage();
         BackgroundButton clickButton = new BackgroundButton(initialCarIcon, backgroundImage);
         clickButton.setPreferredSize(new Dimension(300, 200));
         clickButton.addActionListener(new ActionListener() {
