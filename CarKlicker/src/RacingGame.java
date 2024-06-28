@@ -39,13 +39,13 @@ public class RacingGame extends JFrame {
         gamePanel.setLayout(null);
         add(gamePanel);
 
-        ImageIcon carIcon = new ImageIcon("CarKlicker/images/rennen1.png"); // Spieler-Auto
+        ImageIcon carIcon = new ImageIcon("CarKlicker/images/rennen1.png"); // SpielerAuto
         Image carImage = carIcon.getImage().getScaledInstance(CAR_WIDTH, CAR_HEIGHT, Image.SCALE_SMOOTH);
         carIcon = new ImageIcon(carImage);
 
         carLabel = new JLabel(carIcon);
         carXPosition = 375; // Initiale X-Position des Autos
-        carLabel.setBounds(carXPosition, 500, CAR_WIDTH, CAR_HEIGHT); // Position und Größe des Auto-Labels
+        carLabel.setBounds(carXPosition, 500, CAR_WIDTH, CAR_HEIGHT); // Position und Größe des AutoLabels
         gamePanel.add(carLabel);
 
         hindernisse = new ArrayList<>(); // Initialisiert die Liste der Hindernisse

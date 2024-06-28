@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-// Benutzerdefinierte JButton-Klasse mit Hintergrundbild
+// Benutzerdefinierte JButton Klasse mit Hintergrundbild
 class BackgroundButton extends JButton {
     private Image backgroundImage;
 
@@ -33,8 +33,8 @@ public class GUI {
     private Klicker klicker; // Instanz von Klicker
     private JLabel counterLabel; // Label zum Anzeigen des Zählers
     private BackgroundButton carButton; // Button mit Hintergrundbild für das Auto
-    private JButton lichtButton; // Button für Licht-Upgrade
-    private JButton reifenButton; // Button für Reifen-Upgrade
+    private JButton lichtButton; // Button für Licht Upgrade
+    private JButton reifenButton; // Button für Reifen Upgrade
     private JButton motorButton; // Button für Motor-Upgrade
     private JButton turboButton; // Button für Turbo-Upgrade
     private JButton karosserieButton; // Button für Karosserie-Upgrade
@@ -72,7 +72,7 @@ public class GUI {
         myFrame.setVisible(true);
     }
 
-    // Methode zum Erstellen des Zähler-Labels
+    // Methode zum Erstellen des ZählerLabels
     private JLabel createCounterLabel() {
         JLabel label = new JLabel("Schrauben und Mutter: 0");
         label.setHorizontalAlignment(SwingConstants.CENTER);
