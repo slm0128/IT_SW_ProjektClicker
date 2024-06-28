@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 class BackgroundButton extends JButton {
     private Image backgroundImage;
 
+    // Konstruktor für BackgroundButton
     public BackgroundButton(ImageIcon icon, Image backgroundImage) {
         super(icon);
         this.backgroundImage = backgroundImage;
@@ -18,6 +19,7 @@ class BackgroundButton extends JButton {
         setOpaque(false);
     }
 
+    // Methode zum Zeichnen des Hintergrundbildes
     @Override
     protected void paintComponent(Graphics g) {
         if (backgroundImage != null) {
@@ -28,24 +30,26 @@ class BackgroundButton extends JButton {
 }
 
 public class GUI {
-    private Klicker klicker;
-    private JLabel counterLabel;
-    private BackgroundButton carButton;
-    private JButton lichtButton;
-    private JButton reifenButton;
-    private JButton motorButton;
-    private JButton turboButton;
-    private JButton karosserieButton;
-    private JButton neuesAutoButton;
-    private ImageIcon initialCarIcon;
-    private ImageIcon newCarIcon;
-    private int x = 0;
+    private Klicker klicker; // Instanz von Klicker
+    private JLabel counterLabel; // Label zum Anzeigen des Zählers
+    private BackgroundButton carButton; // Button mit Hintergrundbild für das Auto
+    private JButton lichtButton; // Button für Licht-Upgrade
+    private JButton reifenButton; // Button für Reifen-Upgrade
+    private JButton motorButton; // Button für Motor-Upgrade
+    private JButton turboButton; // Button für Turbo-Upgrade
+    private JButton karosserieButton; // Button für Karosserie-Upgrade
+    private JButton neuesAutoButton; // Button für Neues Auto
+    private ImageIcon initialCarIcon; // Anfangssymbol für Auto
+    private ImageIcon newCarIcon; // Neues Symbol für Auto nach Upgrade
+    private int x = 0; // Zähler für neue Autos
 
+    // Konstruktor für GUI
     public GUI() {
         this.klicker = new Klicker(this);
         createAndShowGUI();
     }
 
+    // Methode zum Erstellen und Anzeigen der GUI
     private void createAndShowGUI() {
         JFrame myFrame = new JFrame("Car Clicker");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +72,7 @@ public class GUI {
         myFrame.setVisible(true);
     }
 
+    // Methode zum Erstellen des Zähler-Labels
     private JLabel createCounterLabel() {
         JLabel label = new JLabel("Schrauben und Mutter: 0");
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -75,10 +80,12 @@ public class GUI {
         return label;
     }
 
+    // Methode zum Aktualisieren des Zähler-Labels
     public void updateCounterLabel() {
         counterLabel.setText("Schrauben und Mutter: " + klicker.getCounter());
     }
 
+    // Methode zum Erstellen des Auto-Buttons mit Hintergrundbild
     private BackgroundButton createCarButton() {
         initialCarIcon = new ImageIcon("CarKlicker/images/car1.png");
         newCarIcon = new ImageIcon("CarKlicker/images/Car2.png");
@@ -95,6 +102,7 @@ public class GUI {
         return clickButton;
     }
 
+    // Methode zum Erstellen des linken Panels mit Buttons
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
         leftPanel.setBackground(Color.BLACK); // Hintergrundfarbe des Panels schwarz setzen
@@ -116,6 +124,7 @@ public class GUI {
         return leftPanel;
     }
 
+    // Methode zum Erstellen des rechten Panels mit Buttons
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
         rightPanel.setBackground(Color.BLACK); // Hintergrundfarbe des Panels schwarz setzen
@@ -140,6 +149,7 @@ public class GUI {
         return rightPanel;
     }
 
+    // Methode zum Anpassen der Buttons
     private void customizeButton(JButton button) {
         button.setBackground(Color.BLACK); // Hintergrundfarbe der Buttons schwarz setzen
         button.setForeground(Color.WHITE); // Schriftfarbe weiß setzen
@@ -160,6 +170,7 @@ public class GUI {
         });
     }
 
+    // Methode zum Behandeln von Aktionen der linken Buttons
     private void handleLeftButtonAction(int index) {
         switch (index) {
             case 0:
@@ -177,6 +188,7 @@ public class GUI {
         }
     }
 
+    // Methode zum Behandeln von Aktionen der rechten Buttons
     private void handleRightButtonAction(int index) {
         boolean upgraded = false;
         switch (index) {
@@ -213,12 +225,14 @@ public class GUI {
         }
     }
 
+    // Methode zum Überprüfen, ob alle Upgrades maximiert sind
     private void checkAllUpgradesMaxed() {
         if (klicker.areAllUpgradesMaxed() && x == 0) {
             neuesAutoButton.setEnabled(true);
         }
     }
 
+    // Methode zum Aktualisieren der Buttons nach Upgrade
     private void updateButton(JButton button, String componentName, int level, boolean upgraded) {
         if (upgraded) {
             button.setText(componentName + " (Level " + level + ")");
@@ -229,6 +243,7 @@ public class GUI {
         }
     }
 
+    // Methode zum Zurücksetzen des Spiels
     private void resetGame() {
         klicker.resetValues();
 
