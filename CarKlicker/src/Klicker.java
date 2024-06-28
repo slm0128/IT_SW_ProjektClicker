@@ -63,23 +63,23 @@ public class Klicker {
 
     // Upgrade-Methoden
     public boolean upgradeLicht() {
-        return upgradeComponent("licht", 1, 4, 8);
+        return upgradeComponent("licht", 10, 40, 80);
     }
 
     public boolean upgradeReifen() {
-        return upgradeComponent("reifen", 3, 6, 1);
+        return upgradeComponent("reifen", 30, 60, 100);
     }
 
     public boolean upgradeMotor() {
-        return upgradeComponent("motor", 5, 1, 2);
+        return upgradeComponent("motor", 500, 600, 650);
     }
 
     public boolean upgradeTurbo() {
-        return upgradeComponent("turbo", 7, 1, 2);
+        return upgradeComponent("turbo", 700, 720,750 );
     }
 
     public boolean upgradeKarosserie() {
-        return upgradeComponent("karosserie", 1, 2, 4);
+        return upgradeComponent("karosserie", 760, 780, 800);
     }
 
     private boolean upgradeComponent(String component, int... costs) {
