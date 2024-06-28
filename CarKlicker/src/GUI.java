@@ -74,7 +74,7 @@ public class GUI {
     // Erstellt den Button zum Klicken auf das Auto
     private JButton createCarButton() {
         initialCarIcon = new ImageIcon("CarKlicker/images/car1.png");
-        newCarIcon = new ImageIcon("CarKlicker/images/Car.png");
+        newCarIcon = new ImageIcon("CarKlicker/images/Car2.png");
         JButton clickButton = new JButton(initialCarIcon);
         clickButton.setPreferredSize(new Dimension(100, 50));
         clickButton.addActionListener(new ActionListener() {

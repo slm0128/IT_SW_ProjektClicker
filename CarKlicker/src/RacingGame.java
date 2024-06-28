@@ -15,8 +15,8 @@ public class RacingGame extends JFrame {
     private ArrayList<JLabel> hindernisse; // Liste der Hindernisse
     private int carXPosition; // X-Position des Autos
     private Klicker klicker;
-    private final int HINDERNISSE_WIDTH = 50; // Breite der Hindernisse
-    private final int HINDERNISSE_HEIGHT = 50; // Höhe der Hindernisse
+    private final int HINDERNISSE_WIDTH = 60; // Breite der Hindernisse
+    private final int HINDERNISSE_HEIGHT = 120; // Höhe der Hindernisse
     private final int CAR_WIDTH = 60; // Breite des Autos
     private final int CAR_HEIGHT = 120; // Höhe des Autos
     private int hindernisseSpeed; // Geschwindigkeit der Hindernisse
@@ -33,12 +33,12 @@ public class RacingGame extends JFrame {
 
         setLayout(null);
 
-        gamePanel = new CustomPanel("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\Straße.png"); //hintergrund
+        gamePanel = new CustomPanel("CarKlicker/images/Straße.png"); //hintergrund
         gamePanel.setBounds(0, 0, 800, 600);
         gamePanel.setLayout(null);
         add(gamePanel);
 
-        ImageIcon carIcon = new ImageIcon("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\rennen.png");
+        ImageIcon carIcon = new ImageIcon("CarKlicker/images/rennen1.png"); //Player Auto
         Image carImage = carIcon.getImage().getScaledInstance(CAR_WIDTH, CAR_HEIGHT, Image.SCALE_SMOOTH);
         carIcon = new ImageIcon(carImage);
 
@@ -95,7 +95,7 @@ public class RacingGame extends JFrame {
         hindernisseTimer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon hindernisseIcon = new ImageIcon("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\rennen.png");
+                ImageIcon hindernisseIcon = new ImageIcon("CarKlicker/images/rennen2.png");//gegnerische auto
                 Image hindernisseImage = hindernisseIcon.getImage().getScaledInstance(HINDERNISSE_WIDTH, HINDERNISSE_HEIGHT, Image.SCALE_SMOOTH);
                 hindernisseIcon = new ImageIcon(hindernisseImage);
 
