@@ -3,21 +3,37 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Benutzerdefinierte JButton-Klasse mit Hintergrundbild
+class BackgroundButton extends JButton {
+    private Image backgroundImage;
 
-/**
- * Die GUI-Klasse erstellt und verwaltet die grafische Benutzeroberfläche des
- * Spiels.
- */
+    public BackgroundButton(ImageIcon icon, Image backgroundImage) {
+        super(icon);
+        this.backgroundImage = backgroundImage;
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setFocusPainted(false);
+        setOpaque(false);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+        super.paintComponent(g);
+    }
+}
+
 public class GUI {
     private Klicker klicker;
-    
     private JLabel counterLabel;
+    private BackgroundButton carButton;
     private JButton lichtButton;
     private JButton reifenButton;
     private JButton motorButton;
     private JButton turboButton;
     private JButton karosserieButton;
-    private JButton carButton;
     private JButton neuesAutoButton;
     private ImageIcon initialCarIcon;
     private ImageIcon newCarIcon;
@@ -25,16 +41,9 @@ public class GUI {
 
     public GUI() {
         this.klicker = new Klicker(this);
-        
-        
         createAndShowGUI();
     }
 
-   
-    
- 
-
-    // Erstellt und zeigt das GUI-Fenster
     private void createAndShowGUI() {
         JFrame myFrame = new JFrame("Car Clicker");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,26 +66,23 @@ public class GUI {
         myFrame.setVisible(true);
     }
 
-    // Erstellt das Label zur Anzeige des Zählers
     private JLabel createCounterLabel() {
         JLabel label = new JLabel("Schrauben und Mutter: 0");
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setPreferredSize(new Dimension(800, 50));
         return label;
     }
+
     public void updateCounterLabel() {
         counterLabel.setText("Schrauben und Mutter: " + klicker.getCounter());
     }
 
-    
-  
-
-    // Erstellt den Button zum Klicken auf das Auto
-    private JButton createCarButton() {
+    private BackgroundButton createCarButton() {
         initialCarIcon = new ImageIcon("CarKlicker/images/car1.png");
         newCarIcon = new ImageIcon("CarKlicker/images/Car2.png");
-        JButton clickButton = new JButton(initialCarIcon);
-        clickButton.setPreferredSize(new Dimension(100, 50));
+        Image backgroundImage = new ImageIcon("CarKlicker/images/Hintergrund.jpg").getImage();
+        BackgroundButton clickButton = new BackgroundButton(initialCarIcon, backgroundImage);
+        clickButton.setPreferredSize(new Dimension(300, 200));
         clickButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +93,6 @@ public class GUI {
         return clickButton;
     }
 
-    // Erstellt das linke Panel mit den Schaltflächen
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
         String[] leftButtonNames = { "Wetten", "Rennen", "         Neues Auto         " };
@@ -107,7 +112,6 @@ public class GUI {
         return leftPanel;
     }
 
-    // Erstellt das rechte Panel mit den Upgrade-Schaltflächen
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
         String[] rightButtonNames = { "Licht", "Reifen", "Motor", "Turbo", "         Karosserie         " };
@@ -130,21 +134,13 @@ public class GUI {
         return rightPanel;
     }
 
-    
-
-    // Behandelt die Aktionen der linken Schaltflächen
-    /**
-     * @param index
-     */
     private void handleLeftButtonAction(int index) {
         switch (index) {
             case 0:
                 new Wetten(klicker);
-                
                 break;
             case 1:
                 new RacingGame(klicker);
-                
                 break;
             case 2:
                 resetGame();
@@ -155,11 +151,6 @@ public class GUI {
         }
     }
 
-    
-
-
-
-    // Behandelt die Aktionen der rechten Schaltflächen (Upgrades)
     private void handleRightButtonAction(int index) {
         boolean upgraded = false;
         switch (index) {
@@ -186,7 +177,6 @@ public class GUI {
             default:
                 System.out.println("Action for Right Button " + index);
                 break;
-                
         }
         if (!upgraded) {
             JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Upgrade", "Information",
@@ -197,16 +187,12 @@ public class GUI {
         }
     }
 
-    // Überprüft, ob alle Upgrades auf Maximallevel sind und aktiviert den "Neues
-    // Auto"-Button
     private void checkAllUpgradesMaxed() {
-        if (klicker.areAllUpgradesMaxed()&& x==0) {
-
+        if (klicker.areAllUpgradesMaxed() && x == 0) {
             neuesAutoButton.setEnabled(true);
         }
     }
 
-    // Aktualisiert den Text und den Status der Schaltfläche nach einem Upgrade
     private void updateButton(JButton button, String componentName, int level, boolean upgraded) {
         if (upgraded) {
             button.setText(componentName + " (Level " + level + ")");
@@ -217,7 +203,6 @@ public class GUI {
         }
     }
 
-    // Setzt das Spiel zurück und aktualisiert die GUI
     private void resetGame() {
         klicker.resetValues();
 
@@ -236,5 +221,8 @@ public class GUI {
         neuesAutoButton.setEnabled(false);
         x++;
     }
-    
+
+    public static void main(String[] args) {
+        new GUI();
+    }
 }
