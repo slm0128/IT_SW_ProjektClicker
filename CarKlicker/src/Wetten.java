@@ -15,13 +15,13 @@ public class Wetten extends JFrame {
         this.klicker = klicker;
         
 
-        setTitle("Race");
+        setTitle("Rennen");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        raceStatus = new JLabel("Race has not started.");
+        raceStatus = new JLabel("Rennen hat nicht begonnen");
         raceStatus.setHorizontalAlignment(SwingConstants.CENTER);
         add(raceStatus, BorderLayout.CENTER);
 
@@ -67,11 +67,11 @@ public class Wetten extends JFrame {
 
     private void raceWon(Klicker klicker){
         
-        raceStatus.setText("Race is running...");
+        raceStatus.setText("Rennen läuft...");
         Timer timer = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                raceStatus.setText("Race finished! You won");
+                raceStatus.setText("Rennen fertig! du hast gewonnen");
                 klicker.update();
             }
         });
@@ -88,11 +88,11 @@ public class Wetten extends JFrame {
     }private void raceLost(Klicker klicker) {
         int x = 3000;
         
-        raceStatus.setText("Race is running...");
+        raceStatus.setText("Rennen läuft...");
         Timer timer = new Timer(x, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                raceStatus.setText("Race finished! You lose");
+                raceStatus.setText("Rennen beendet! du hast verloren");
                 klicker.update();
             }
            

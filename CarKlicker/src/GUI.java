@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // Benutzerdefinierte JButton-Klasse mit Hintergrundbild
 class BackgroundButton extends JButton {
@@ -80,7 +82,7 @@ public class GUI {
     private BackgroundButton createCarButton() {
         initialCarIcon = new ImageIcon("CarKlicker/images/car1.png");
         newCarIcon = new ImageIcon("CarKlicker/images/Car2.png");
-        Image backgroundImage = new ImageIcon("CarKlicker/images/Hintergrund.jpeg").getImage();
+        Image backgroundImage = new ImageIcon("CarKlicker/images/aa.jpeg").getImage();
         BackgroundButton clickButton = new BackgroundButton(initialCarIcon, backgroundImage);
         clickButton.setPreferredSize(new Dimension(300, 200));
         clickButton.addActionListener(new ActionListener() {
@@ -95,9 +97,11 @@ public class GUI {
 
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel(new GridLayout(5, 1));
+        leftPanel.setBackground(Color.BLACK); // Hintergrundfarbe des Panels schwarz setzen
         String[] leftButtonNames = { "Wetten", "Rennen", "         Neues Auto         " };
         for (int i = 0; i < leftButtonNames.length; i++) {
             JButton leftButton = new JButton(leftButtonNames[i]);
+            customizeButton(leftButton); // Hintergrundfarbe der Buttons und andere Eigenschaften setzen
             int index = i;
             leftButton.addActionListener(new ActionListener() {
                 @Override
@@ -114,9 +118,11 @@ public class GUI {
 
     private JPanel createRightPanel() {
         JPanel rightPanel = new JPanel(new GridLayout(5, 1));
+        rightPanel.setBackground(Color.BLACK); // Hintergrundfarbe des Panels schwarz setzen
         String[] rightButtonNames = { "Licht", "Reifen", "Motor", "Turbo", "         Karosserie         " };
         for (int i = 0; i < rightButtonNames.length; i++) {
             JButton rightButton = new JButton(rightButtonNames[i]);
+            customizeButton(rightButton); // Hintergrundfarbe der Buttons und andere Eigenschaften setzen
             int index = i;
             rightButton.addActionListener(new ActionListener() {
                 @Override
@@ -132,6 +138,26 @@ public class GUI {
         turboButton = (JButton) rightPanel.getComponent(3);
         karosserieButton = (JButton) rightPanel.getComponent(4);
         return rightPanel;
+    }
+
+    private void customizeButton(JButton button) {
+        button.setBackground(Color.BLACK); // Hintergrundfarbe der Buttons schwarz setzen
+        button.setForeground(Color.WHITE); // Schriftfarbe weiß setzen
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+
+        // Hintergrundfarbe ändern, wenn der Button gedrückt wird
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button.setBackground(new Color(50, 50, 50)); // Hellere Schwarztonfarbe
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                button.setBackground(Color.BLACK); // Zurück zur ursprünglichen Farbe
+            }
+        });
     }
 
     private void handleLeftButtonAction(int index) {
@@ -220,9 +246,5 @@ public class GUI {
         carButton.setIcon(newCarIcon);
         neuesAutoButton.setEnabled(false);
         x++;
-    }
-
-    public static void main(String[] args) {
-        new GUI();
     }
 }
