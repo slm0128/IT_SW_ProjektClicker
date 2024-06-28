@@ -7,11 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Die RacingGame-Klasse verwaltet das Rennen-Minispiel.
- */
 public class RacingGame extends JFrame {
-    private JPanel gamePanel; // Panel für das Rennen
+    private CustomPanel gamePanel; // Panel für das Rennen mit Hintergrundbild
     private JLabel carLabel; // Label für das Auto
     private Timer gameTimer; // Timer für das Spiel
     private Timer hindernisseTimer; // Timer für die Hindernisse
@@ -36,12 +33,12 @@ public class RacingGame extends JFrame {
 
         setLayout(null);
 
-        gamePanel = new JPanel();
+        gamePanel = new CustomPanel("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\Straße.png"); //hintergrund
         gamePanel.setBounds(0, 0, 800, 600);
         gamePanel.setLayout(null);
         add(gamePanel);
 
-        ImageIcon carIcon = new ImageIcon("CarKlicker/images/Car.png");
+        ImageIcon carIcon = new ImageIcon("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\rennen.png");
         Image carImage = carIcon.getImage().getScaledInstance(CAR_WIDTH, CAR_HEIGHT, Image.SCALE_SMOOTH);
         carIcon = new ImageIcon(carImage);
 
@@ -98,9 +95,8 @@ public class RacingGame extends JFrame {
         hindernisseTimer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon hindernisseIcon = new ImageIcon("CarKlicker/images/Hindernis.png");
-                Image hindernisseImage = hindernisseIcon.getImage().getScaledInstance(HINDERNISSE_WIDTH,
-                        HINDERNISSE_HEIGHT, Image.SCALE_SMOOTH);
+                ImageIcon hindernisseIcon = new ImageIcon("H:\\Downloads\\Neuer Ordner\\IT_SW_ProjektClicker-main (1)\\IT_SW_ProjektClicker-main\\CarKlicker\\images\\rennen.png");
+                Image hindernisseImage = hindernisseIcon.getImage().getScaledInstance(HINDERNISSE_WIDTH, HINDERNISSE_HEIGHT, Image.SCALE_SMOOTH);
                 hindernisseIcon = new ImageIcon(hindernisseImage);
 
                 JLabel hindernis = new JLabel(hindernisseIcon);
@@ -114,8 +110,7 @@ public class RacingGame extends JFrame {
         hindernisseTimer.start();
     }
 
-    // Erhöht die Geschwindigkeit der Hindernisse in regelmäßigen Abständen alle 5
-    // sek
+    // Erhöht die Geschwindigkeit der Hindernisse in regelmäßigen Abständen alle 5 sek
     private void increaseHindernisseSpeed() {
         Timer speedTimer = new Timer(5000, new ActionListener() {
             @Override
@@ -155,6 +150,27 @@ public class RacingGame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Game Over!");
                 this.dispose();
                 break;
+            }
+        }
+    }
+
+    // CustomPanel-Klasse, um das Hintergrundbild zu zeichnen
+    private class CustomPanel extends JPanel {
+        private Image backgroundImage;
+
+        public CustomPanel(String imagePath) {
+            try {
+                backgroundImage = new ImageIcon(imagePath).getImage();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         }
     }

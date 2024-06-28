@@ -3,12 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /**
  * Die GUI-Klasse erstellt und verwaltet die grafische Benutzeroberfläche des
  * Spiels.
  */
 public class GUI {
     private Klicker klicker;
+    
     private JLabel counterLabel;
     private JButton lichtButton;
     private JButton reifenButton;
@@ -19,11 +21,18 @@ public class GUI {
     private JButton neuesAutoButton;
     private ImageIcon initialCarIcon;
     private ImageIcon newCarIcon;
+    private int x = 0;
 
     public GUI() {
-        this.klicker = new Klicker();
+        this.klicker = new Klicker(this);
+        
+        
         createAndShowGUI();
     }
+
+   
+    
+ 
 
     // Erstellt und zeigt das GUI-Fenster
     private void createAndShowGUI() {
@@ -55,6 +64,12 @@ public class GUI {
         label.setPreferredSize(new Dimension(800, 50));
         return label;
     }
+    public void updateCounterLabel() {
+        counterLabel.setText("Schrauben und Mutter: " + klicker.getCounter());
+    }
+
+    
+  
 
     // Erstellt den Button zum Klicken auf das Auto
     private JButton createCarButton() {
@@ -115,19 +130,21 @@ public class GUI {
         return rightPanel;
     }
 
-    // Aktualisiert das Zähler-Label
-    private void updateCounterLabel() {
-        counterLabel.setText("Schrauben und Mutter: " + klicker.getCounter());
-    }
+    
 
     // Behandelt die Aktionen der linken Schaltflächen
+    /**
+     * @param index
+     */
     private void handleLeftButtonAction(int index) {
         switch (index) {
             case 0:
-                new Wetten();
+                new Wetten(klicker);
+                
                 break;
             case 1:
                 new RacingGame(klicker);
+                
                 break;
             case 2:
                 resetGame();
@@ -137,6 +154,10 @@ public class GUI {
                 break;
         }
     }
+
+    
+
+
 
     // Behandelt die Aktionen der rechten Schaltflächen (Upgrades)
     private void handleRightButtonAction(int index) {
@@ -165,6 +186,7 @@ public class GUI {
             default:
                 System.out.println("Action for Right Button " + index);
                 break;
+                
         }
         if (!upgraded) {
             JOptionPane.showMessageDialog(null, "Nicht genug Schrauben und Mutter für Upgrade", "Information",
@@ -178,7 +200,8 @@ public class GUI {
     // Überprüft, ob alle Upgrades auf Maximallevel sind und aktiviert den "Neues
     // Auto"-Button
     private void checkAllUpgradesMaxed() {
-        if (klicker.areAllUpgradesMaxed()) {
+        if (klicker.areAllUpgradesMaxed()&& x==0) {
+
             neuesAutoButton.setEnabled(true);
         }
     }
@@ -197,6 +220,12 @@ public class GUI {
     // Setzt das Spiel zurück und aktualisiert die GUI
     private void resetGame() {
         klicker.resetValues();
+
+        lichtButton.setEnabled(true);
+        karosserieButton.setEnabled(true);
+        reifenButton.setEnabled(true);
+        motorButton.setEnabled(true);
+        turboButton.setEnabled(true);
         updateCounterLabel();
         updateButton(lichtButton, "Licht", klicker.getLicht(), true);
         updateButton(reifenButton, "Reifen", klicker.getReifen(), true);
@@ -205,5 +234,7 @@ public class GUI {
         updateButton(karosserieButton, "Karosserie", klicker.getKarosserie(), true);
         carButton.setIcon(newCarIcon);
         neuesAutoButton.setEnabled(false);
+        x++;
     }
+    
 }

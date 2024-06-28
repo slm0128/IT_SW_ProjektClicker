@@ -7,11 +7,21 @@ public class Klicker {
     private int motor;
     private int turbo;
     private int karosserie;
+    private GUI gui;
+    
+    
 
-    public Klicker() {
+    public Klicker(GUI gui) {
+        this.gui = gui;
+        
         resetValues();
     }
 
+    public void update(){
+        gui.updateCounterLabel();
+    }
+
+   
     // Getter-Methoden
     public int getCounter() {
         return counter;
