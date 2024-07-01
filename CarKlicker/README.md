@@ -1,8 +1,8 @@
 Spielanleitung
 
 Spielstart:
-1.Führen Sie die Klasse "Start" aus.
-Ein Frame namens "CarKlicker" wird angezeigt.
+1. Führen Sie die Klasse "Start" aus.
+2. Ein Frame namens "CarKlicker" wird angezeigt.
 
 Spielprinzip:
 Klicken Sie auf das Auto in der Mitte des Bildschirms, um Schrauben und Muttern zu sammeln. Diese Währung wird verwendet, um Upgrades für Ihr Auto zu kaufen.
